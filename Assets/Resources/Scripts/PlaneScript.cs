@@ -88,6 +88,7 @@ namespace Assets.Resources.Scripts
                 StartCoroutine(HoopDrop(other));
                 Currlevel.DecrementInteractables(gameObject);
                 Currlevel.IncrementScore();
+                
             }
             //plane goes out of bounds
             if (other.gameObject.CompareTag("Ground"))
@@ -112,6 +113,7 @@ namespace Assets.Resources.Scripts
         {
             //wait 1.5 seconds before dropping hoop
             yield return new WaitForSeconds(.7F);
+            other.GetComponent<HoopScript>()._willOscillate = false;
             other.GetComponentInParent<Rigidbody>().useGravity = true;
         }
     }

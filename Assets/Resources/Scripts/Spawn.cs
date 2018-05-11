@@ -4,7 +4,7 @@ namespace Assets.Resources.Scripts
 {
     public class Spawn : MonoBehaviour {
         public bool WillFloat;
-        public bool WillOscillate;
+        public bool WillOscillate = Data.willOscillate;
         public int CurrentInteractables;
         public GameObject Prefab;
         public Vector3 Randomvector;
@@ -16,8 +16,10 @@ namespace Assets.Resources.Scripts
         public Spawn()
         {
             R = 1f;
+            
         }
-
+        
+        
         void OnDrawGizmos()
         {
             Gizmos.DrawWireSphere(transform.position, R);
