@@ -5,9 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/StartMenu.unity
-    guid: 46a497b1c8dccb642a1c935fad1c4daa
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/PlaneGame.unity
     guid: 56437e88562f64d49abb70a0bd78b6f8

@@ -9,7 +9,7 @@ namespace Assets.Resources.Scripts
         private RaycastHit[] _hits;                          //array of grabbable objects hit by raycast
         private bool _released = false;                      //grabbedobject has been released bool
         private Vector3 _initialToss;                        //the velocity at release (initial flight path)                         
-        private int levelOfAssistance = 3;                  //level of assistance from settings, determines assistance on the initial flight path
+        private float levelOfAssistance;                  //level of assistance from settings, determines assistance on the initial flight path
         private GameObject _hoop;                            //hoop gameobject
         private Vector3 _initialPos;
         private OvrAvatarRightHand _righthand;
@@ -27,6 +27,7 @@ namespace Assets.Resources.Scripts
         {
             _righthand = GameObject.FindObjectOfType<OvrAvatarRightHand>();
             Player = GameObject.FindObjectOfType<OVRPlayerController>();
+            levelOfAssistance = Data.getLevelOfAssistance();
         }
 
         public void SetDefaultHandPose()

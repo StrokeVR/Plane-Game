@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Assets.Resources.Scripts
@@ -13,7 +14,8 @@ namespace Assets.Resources.Scripts
 
         public GameObject[] InteractableSpawnPoints;        //start positions of objects the player can pick up
         public GameObject[] TargetSpawnPoints;              //start positions  of objects the player aims for (hoops)
-        public Text Hud;                                    //heads-up display text (the score)
+        public Text Hud;                                 //heads-up display text (the score)
+        public Text level;
         public int Goal;                                    //the score goal
         public LevelManager Levelmanager;                   //reference to our scene's levelmanager
         public GameObject Confetti;                         //confetti animation
@@ -30,7 +32,9 @@ namespace Assets.Resources.Scripts
             //set default score, set timer, set player positions, hide other levels' enclosures
             _score = 0;
             _timer = 0.0f;
+            Debug.Log(Data.getLevelOfAssistance());
             _nextposition = Levelmanager.GetNextLevel(LevelNum);
+            level.text = "LEVEL: " + Data.level;
             SetLevelEnclosure();
         }
 
@@ -90,7 +94,20 @@ namespace Assets.Resources.Scripts
             Destroy(Confetti);
             Confetti = (GameObject) UnityEngine.Resources.Load("Prefabs&Objects/Confetti");
             _interactables.Clear();
-            Levelmanager.NextLevel();
+            Data.incrementLevel();
+            Data.level += 1;
+            if (Data.level == Data.levelToOscillate)
+            {
+                Data.willOscillate = true;
+            }
+            if (Data.level > Data.maxLevel)
+            {
+                Data.resetValues();
+            }
+        
+               SceneManager.LoadScene("PlaneGame");
+            
+            //Levelmanager.NextLevel();
         }
 
         void SetLevelEnclosure()

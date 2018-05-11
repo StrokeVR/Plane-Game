@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Assets.Resources.Scripts
 {
     public class HoopScript : MonoBehaviour
     {
         private bool _willFloat;
-        private bool _willOscillate;
+        public bool _willOscillate;
         private int _ageInFrames;
         private GameObject _spawnPoint;
         private Color _hoopColor;
@@ -13,20 +14,22 @@ namespace Assets.Resources.Scripts
 
         private Vector3 _pos1;
         private Vector3 _pos2;
-        private float speed = 0.5f;
+        private float speed;
+
         void Start()
         {
             _ageInFrames = 0;
             _player = GameObject.Find("OVRPlayerController");
             _spawnPoint = GameObject.Find("hoopspawnpoint");
             Spawn spawn = _spawnPoint.GetComponent<Spawn>();
-            _willOscillate = spawn.WillOscillate;
+            _willOscillate = Data.willOscillate;
             _willFloat = spawn.WillFloat;
             _hoopColor = Random.ColorHSV(0f, 1f, 80f, 100f, 0f, 1f);
             this.gameObject.GetComponent<Renderer>().material.color = _hoopColor;
             transform.LookAt(_player.transform);
-            _pos1 = transform.position + new Vector3(0f, 0f, 1);
-            _pos2 = transform.position + new Vector3(0f, 0f, -1);
+            _pos1 = transform.position + new Vector3(Data.maxRange, 0.5f, 0f);
+            _pos2 = transform.position + new Vector3(Data.minRange, 0.5f, 0f);
+            speed = Data.oscillateSpeed;
         }
 
         void Update()
@@ -44,10 +47,15 @@ namespace Assets.Resources.Scripts
                 }
                 _ageInFrames++;
             }
-            else if (_willOscillate)
+            if (_willOscillate)
             {
                 transform.position = Vector3.Lerp(_pos1, _pos2, Mathf.PingPong(Time.time * speed, 1.0f));
+
             }
+            
+               
+            
         }
+ 
     }
 }
