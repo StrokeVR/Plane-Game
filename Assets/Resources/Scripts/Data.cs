@@ -5,7 +5,7 @@ using UnityEngine;
 public static class Data
 {
 
-    public static float levelOfAssistance = 10;
+    //public static float levelOfAssistance = 10;
     public static int level = 1;
     public static float maxLevel = 5; //Inclusive
 
@@ -17,18 +17,7 @@ public static class Data
     public static int minRange = -2;
     public static int maxRange = 2;
      
-    //Setter
-    public static void setLevelOfAssistance(float assist)
-    {
-        levelOfAssistance = assist;
-    }
 
-    //Getter
-    public static float getLevelOfAssistance()
-    {
-        return levelOfAssistance;
-    }
-    
 
     //Increment
     public static void incrementLevel()
@@ -43,9 +32,9 @@ public static class Data
     {
 
         willOscillate = false;
-        float assist = levelOfAssistance + (maxLevel * levelMultiplier);
-        Debug.Log(assist);
-        setLevelOfAssistance(assist);
+        //float assist = levelOfAssistance + (maxLevel * levelMultiplier);
+        //Debug.Log(assist);
+        //setLevelOfAssistance(assist);
         level = 1;
     }
 }

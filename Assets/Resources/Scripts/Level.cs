@@ -27,12 +27,17 @@ namespace Assets.Resources.Scripts
         private readonly List<GameObject> _interactables = new List<GameObject>();    //list of current interactables (planes/boats/balloons)
         private float _timer;
 
+        Score score;
+        Achievements a;
+
         public void Start()
         {
             //set default score, set timer, set player positions, hide other levels' enclosures
             _score = 0;
             _timer = 0.0f;
-            Debug.Log(Data.getLevelOfAssistance());
+            score = GameObject.Find("Score").GetComponent<Score>();
+            a = GameObject.Find("Achievements").GetComponent<Achievements>();
+            //Debug.Log(Data.getLevelOfAssistance());
             _nextposition = Levelmanager.GetNextLevel(LevelNum);
             level.text = "LEVEL: " + Data.level;
             SetLevelEnclosure();
@@ -104,7 +109,9 @@ namespace Assets.Resources.Scripts
             {
                 Data.resetValues();
             }
-        
+            score.level = Data.level;
+            score.Save();
+            a.checkAllAchievements(Data.level);
                SceneManager.LoadScene("PlaneGame");
             
             //Levelmanager.NextLevel();

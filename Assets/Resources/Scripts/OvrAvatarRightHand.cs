@@ -22,9 +22,11 @@ namespace Assets.Resources.Scripts
         public OVRPlayerController Player;
         public Camera Centereyecamera;
         public GameObject Spawnpoint;
-
+        bool move = false;
+        Level currLevel;
         public void Start()
         {
+            currLevel = GameObject.Find("PlaneLevel").GetComponent<Level>();
             _lefthand = GameObject.FindObjectOfType<OvrAvatarLeftHand>();
             Player = GameObject.FindObjectOfType<OVRPlayerController>();
         }
@@ -53,6 +55,38 @@ namespace Assets.Resources.Scripts
                 _released = true;    //cannot regrab released object
                 _extended = false;
                 _grabbing = false;
+            }
+            if (_grabbedObject != null)
+            {
+                //RaycastHit hit;
+                RaycastHit hit;
+                int layer = LayerMask.GetMask("RayLayer");
+
+                // Does the ray intersect any objects excluding the player layer
+                if (Physics.Raycast(_grabbedObject.transform.position, _grabbedObject.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layer))
+                {
+                    Debug.DrawRay(_grabbedObject.transform.position, _grabbedObject.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+                    if (move)
+                    {
+                        _grabbedObject.transform.LookAt(hit.point);
+                        _grabbedObject.transform.position = Vector3.MoveTowards(_grabbedObject.transform.position, hit.point, 0.02f);
+                        if (Vector3.Distance(_grabbedObject.transform.position, hit.point) <= 0)
+                        {
+                            _grabbedObject.GetComponent<Rigidbody>().useGravity = true;
+                            currLevel.DecrementInteractables(_grabbedObject);
+                            move = false;
+                        }
+
+                    }
+                    Debug.Log("Did Hit; " + hit.point.ToString());
+                }
+                else
+                {
+                    Debug.DrawRay(_grabbedObject.transform.position, _grabbedObject.transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+                    Debug.Log("Did not Hit");
+                }
+
+
             }
         }
 
@@ -85,15 +119,16 @@ namespace Assets.Resources.Scripts
                 _grabbedObject.transform.parent = null;
                 _grabbedObject.GetComponent<Rigidbody>().isKinematic = false;
                 _grabbedObject.GetComponent<LineRenderer>().enabled = false;
-                _hoop = GameObject.Find("hoop(Clone)");
+                move = true;
+               // _hoop = GameObject.Find("hoop(Clone)");
                 //vector to determine ideal flight path towards the hoop
-                Vector3 towardsHoop = _hoop.transform.transform.position - _grabbedObject.transform.position;
+                //Vector3 towardsHoop = _hoop.transform.transform.position - _grabbedObject.transform.position;
                 // flight on release, flight path changed by level of difficulty
 
-                Vector3 velocity = OVRInput.GetLocalControllerVelocity(Controller);
+                //Vector3 velocity = OVRInput.GetLocalControllerVelocity(Controller);
                 //Debug.Log(towardsHoop.normalized);
                 //Debug.Log(velocity);
-                if (Mathf.Abs(velocity.x) < towardsHoop.normalized.x + .15)
+                /*if (Mathf.Abs(velocity.x) < towardsHoop.normalized.x + .15)
                     velocity = towardsHoop.normalized * levelOfAssistance;
                 else
                 {
@@ -101,7 +136,7 @@ namespace Assets.Resources.Scripts
                 }
                 velocity = velocity / levelOfAssistance * 3;                    //velocity always around 3
                 _grabbedObject.GetComponent<Rigidbody>().velocity = velocity;    //set thrown object's velocity to calculated velocity
-                _grabbedObject.transform.LookAt(_hoop.transform);
+                _grabbedObject.transform.LookAt(_hoop.transform);*/
             }
         }
         public void SetReleasedToFalse()
