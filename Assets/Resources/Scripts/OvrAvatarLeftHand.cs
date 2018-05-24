@@ -22,12 +22,14 @@ namespace Assets.Resources.Scripts
         public OVRPlayerController Player;
         public Camera Centereyecamera;
         public GameObject Spawnpoint;
-
+        bool move = false;
+        Level currLevel;
         public void Start()
         {
+            currLevel =  GameObject.Find("PlaneLevel").GetComponent<Level>();
             _righthand = GameObject.FindObjectOfType<OvrAvatarRightHand>();
             Player = GameObject.FindObjectOfType<OVRPlayerController>();
-            levelOfAssistance = Data.getLevelOfAssistance();
+            levelOfAssistance = 1;
         }
 
         public void SetDefaultHandPose()
@@ -55,6 +57,41 @@ namespace Assets.Resources.Scripts
                 _extended = false;
                 _grabbing = false;
             }
+            if (_grabbedObject !=null)
+            {
+                //RaycastHit hit;
+                RaycastHit hit;
+                int layer = LayerMask.GetMask("RayLayer");
+
+                // Does the ray intersect any objects excluding the player layer
+                if (Physics.Raycast(_grabbedObject.transform.position, _grabbedObject.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layer))
+                {
+                    Debug.DrawRay(_grabbedObject.transform.position, _grabbedObject.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+                    if (move)
+                    {
+                        _grabbedObject.transform.LookAt(hit.point);
+                        _grabbedObject.transform.position = Vector3.MoveTowards(_grabbedObject.transform.position, hit.point, 0.02f);
+                        if (Vector3.Distance(_grabbedObject.transform.position, hit.point) <= 0)
+                        {
+                            _grabbedObject.GetComponent<Rigidbody>().useGravity = true;
+                            currLevel.DecrementInteractables(_grabbedObject);
+                            GameObject.Find("Achievements").GetComponent<Achievements>().missed++;
+
+                            move = false;
+                        }
+
+                    }
+                    Debug.Log("Did Hit; " + hit.point.ToString());
+                }
+                else
+                {
+                    Debug.DrawRay(_grabbedObject.transform.position, _grabbedObject.transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+                    Debug.Log("Did not Hit");
+                }
+
+                
+            }
+           
         }
 
         void GrabObject()
@@ -73,6 +110,7 @@ namespace Assets.Resources.Scripts
             _grabbedObject.transform.localRotation = transform.localRotation;
             _grabbedObject.GetComponent<LineRenderer>().enabled = true;
 
+            
             //start up engine sound effect for jet
             if (_grabbedObject.GetComponent<AudioSource>())
                 _grabbedObject.GetComponent<AudioSource>().mute = false;
@@ -87,7 +125,9 @@ namespace Assets.Resources.Scripts
                 _grabbedObject.GetComponent<Rigidbody>().isKinematic = false;
                 _grabbedObject.GetComponent<LineRenderer>().enabled = false;
                 _hoop = GameObject.Find("hoop(Clone)");
-                //vector to determine ideal flight path towards the hoop
+                //_grabbedObject.transform.LookAt(_hoop.transform);
+                move = true;
+                /*//vector to determine ideal flight path towards the hoop
                 Vector3 towardsHoop = _hoop.transform.transform.position - _grabbedObject.transform.position;
                 // flight on release, flight path changed by level of difficulty
 
@@ -101,13 +141,14 @@ namespace Assets.Resources.Scripts
                 velocity = velocity / levelOfAssistance * 3;                    //velocity always around 3
                 _grabbedObject.GetComponent<Rigidbody>().velocity = velocity;    //set thrown object's velocity to calculated velocity
                 //changing the rotation of the thrown object to look natural based upon throw
-                /*
+                
                                                                              grabbedObject.transform.up = Vector3.up; ;
                                                                              grabbedObject.transform.forward = OVRInput.GetLocalControllerVelocity(Controller).normalized;
                                                                              grabbedObject.transform.forward = Vector3.Cross(grabbedObject.transform.up, grabbedObject.transform.right);
                                                                              grabbedObject.transform.right = Vector3.Cross(grabbedObject.transform.forward, gameObject.transform.up);
                                                                              */
-                _grabbedObject.transform.LookAt(_hoop.transform);
+
+               
             }
         }
         public void SetReleasedToFalse()
