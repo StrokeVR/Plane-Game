@@ -14,7 +14,8 @@ namespace Assets.Resources.Scripts
         private Vector3 _initialPos;
         private OvrAvatarLeftHand _lefthand;
         private bool _extended = false;
-
+        public Material defaultMat;
+        public Material hoverMat;
         public Transform GripTransform;         //hand grabbing pose
         public float GrabRadius;                //radius around hand for grabbing objects
         public LayerMask GrabMask;              //grabbable layer
@@ -66,6 +67,16 @@ namespace Assets.Resources.Scripts
                 if (Physics.Raycast(_grabbedObject.transform.position, _grabbedObject.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layer))
                 {
                     Debug.DrawRay(_grabbedObject.transform.position, _grabbedObject.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+                    _hoop = GameObject.Find("hoop(Clone)");
+                    // Debug.Log(Vector3.Distance(hit.point, _hoop.transform.position));
+                    if (Vector3.Distance(hit.point, _hoop.transform.position) < 1.3)
+                    {
+                        _hoop.gameObject.GetComponent<MeshRenderer>().material = hoverMat;
+                    }
+                    else
+                    {
+                        _hoop.gameObject.GetComponent<MeshRenderer>().material = defaultMat;
+                    }
                     if (move)
                     {
                         _grabbedObject.transform.LookAt(hit.point);
