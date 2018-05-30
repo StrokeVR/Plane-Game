@@ -1761,6 +1761,80 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &450991430
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 450991431}
+  - component: {fileID: 450991433}
+  - component: {fileID: 450991432}
+  - component: {fileID: 450991434}
+  m_Layer: 0
+  m_Name: BoatPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &450991431
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 450991430}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 241.5, y: 1.22, z: 67.82}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1747592985}
+  m_Father: {fileID: 802065614}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!111 &450991432
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 450991430}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: fde9e1051c2a0654ab2a63acba41a2a0, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!95 &450991433
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 450991430}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bd9d3fbdc2f74014fa9c7a10f3a5a153, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &450991434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 450991430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bb4f4b8e13e34b4b9649359d81855a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &470058528
 GameObject:
   m_ObjectHideFlags: 0
@@ -2438,6 +2512,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d414148ee1ac94eb90006d223531e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMat: {fileID: 2100000, guid: 44172fc71527cdc489ddee0cb707cafe, type: 2}
+  hoverMat: {fileID: 2100000, guid: bbc918d753037e342ab72d5b2dfd3b86, type: 2}
   GripTransform: {fileID: 4286226839761394, guid: 05e2f52e76ec309469b1158397d549ca,
     type: 2}
   GrabRadius: 0.2
@@ -2850,8 +2926,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2084032318}
+  - {fileID: 450991431}
   - {fileID: 1769653533}
-  - {fileID: 1747592985}
   - {fileID: 185846621}
   - {fileID: 1845741701}
   - {fileID: 30268989}
@@ -5839,8 +5915,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1497325212}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 241.93, y: 2.63, z: 78.78}
-  m_LocalScale: {x: 12.763679, y: 4.939954, z: 0.20692773}
+  m_LocalPosition: {x: 241.93, y: 6.25, z: 78.78}
+  m_LocalScale: {x: 18.297316, y: 12.463454, z: 0.20692773}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -6960,16 +7036,16 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1747592984}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 242, y: 0.19, z: 83.79}
-  m_LocalScale: {x: 0.10000006, y: 0.1, z: 0.10000006}
+  m_LocalPosition: {x: 0.5, y: -1.0300004, z: 15.32}
+  m_LocalScale: {x: 0.10000036, y: 0.1, z: 0.10000036}
   m_Children:
   - {fileID: 363541526}
   - {fileID: 1395374053}
   - {fileID: 247806281}
   - {fileID: 23362530}
   - {fileID: 141276083}
-  m_Father: {fileID: 802065614}
-  m_RootOrder: 2
+  m_Father: {fileID: 450991431}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!54 &1747592988
 Rigidbody:
@@ -7093,7 +7169,7 @@ Transform:
   - {fileID: 1440627226}
   - {fileID: 1631283350}
   m_Father: {fileID: 802065614}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1795983861
 GameObject:
@@ -7292,6 +7368,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae141fa1d09ddea4880baa8faf893f9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMat: {fileID: 2100000, guid: 44172fc71527cdc489ddee0cb707cafe, type: 2}
+  hoverMat: {fileID: 2100000, guid: bbc918d753037e342ab72d5b2dfd3b86, type: 2}
   GripTransform: {fileID: 4474994389467458, guid: 1c17d1814e367de44bf6d684834247bc,
     type: 2}
   GrabRadius: 0.2
