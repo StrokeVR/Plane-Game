@@ -28,9 +28,12 @@ public class SelectorRay : MonoBehaviour
 
                 if (Physics.Raycast(_ray, out _hit) && _hit.collider.tag.Equals(TargetTag))
                 {
+                    
+                    
                     _button = _hit.collider.gameObject.GetComponent<ClickButton>();
                     _button.IsHovering = true;
                 }
+              
             }
         }
 	}
