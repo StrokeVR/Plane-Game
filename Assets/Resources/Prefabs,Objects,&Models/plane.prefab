@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 33790589691214562}
   - component: {fileID: 23778875389093504}
   - component: {fileID: 111784944859260704}
+  - component: {fileID: 114435846123832956}
   m_Layer: 9
   m_Name: Box333
   m_TagString: Untagged
@@ -174,7 +175,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1928250561498690}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 242.45128, y: 0.325, z: 67.44357}
+  m_LocalPosition: {x: 245.75742, y: 1.85, z: 75.398636}
   m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_Children:
   - {fileID: 4397668952029696}
@@ -265,7 +266,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4511401403172594}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: -164.9784, z: -90.00001}
+  m_LocalEulerAnglesHint: {x: 0, y: 77.56656, z: -90.00001}
 --- !u!4 &4959259023329210
 Transform:
   m_ObjectHideFlags: 1
@@ -698,14 +699,25 @@ Animation:
   m_GameObject: {fileID: 1726133829756726}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 975b2ffac2a610049bb38abbc283ce20, type: 2}
+  m_Animation: {fileID: 7400000, guid: 56a2147c3af44fa40899530ec72d9623, type: 2}
   m_Animations:
-  - {fileID: 0}
-  - {fileID: 7400000, guid: 975b2ffac2a610049bb38abbc283ce20, type: 2}
+  - {fileID: 7400000, guid: 56a2147c3af44fa40899530ec72d9623, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 0
+  m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &114435846123832956
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1726133829756726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a38e954d850f639419cf373ca3c52bbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 111784944859260704}
 --- !u!114 &114711992590207366
 MonoBehaviour:
   m_ObjectHideFlags: 1

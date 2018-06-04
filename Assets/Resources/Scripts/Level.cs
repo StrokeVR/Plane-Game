@@ -105,10 +105,10 @@ namespace Assets.Resources.Scripts
             {
                 Data.willOscillate = true;
             }
-            if (Data.level > Data.maxLevel)
+           /* if (Data.level > Data.maxLevel)
             {
                 Data.resetValues();
-            }
+            }*/
             score.level = Data.level;
             score.Save();
             a.checkAllAchievements(Data.level);

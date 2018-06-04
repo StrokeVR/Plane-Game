@@ -34,7 +34,38 @@ namespace Assets.Resources.Scripts
             //collection of start menu buttons
             _buttons = GameObject.Find("Start Buttons");
             _clickbuttons = _buttons.GetComponentsInChildren<Button>();
-            hitbox.SetActive(false);
+            if (Data.level <= 1)
+            {
+                 foreach (Button b in _clickbuttons)
+                {
+                    if (b.gameObject.name.Equals("Exit"))
+                    {
+                        b.gameObject.SetActive(true);
+                    }
+                    else if (b.gameObject.name.Equals("Restart"))
+                    {
+                        b.gameObject.SetActive(false);
+                    }
+
+                }
+            }
+            else
+            {
+                foreach (Button b in _clickbuttons)
+                {
+                    if (b.gameObject.name.Equals("Restart"))
+                    {
+                        b.gameObject.SetActive(true);
+                    }
+                    else if (b.gameObject.name.Equals("Exit"))
+                    {
+                        b.gameObject.SetActive(false);
+                    }
+
+                }
+            }
+            hitbox.SetActive(false); 
+
             pointsdisplay.gameObject.SetActive(false);
             reticlecanvas.gameObject.SetActive(true);
             //show start menu canvas
@@ -83,6 +114,7 @@ namespace Assets.Resources.Scripts
             Cam.cullingMask = 0;
             //stop playing
             UnityEditor.EditorApplication.isPlaying = false;
+            Application.Quit();
         }
 
         public void LoadScene()
@@ -105,6 +137,12 @@ namespace Assets.Resources.Scripts
             //enable hitbox for throwing planes, and the points hud
             hitbox.SetActive(true);
             pointsdisplay.gameObject.SetActive(true);
+        }
+
+        public void RestartGame()
+        {
+            Data.resetValues();
+            LoadScene();
         }
 
         IEnumerator ResetTime()

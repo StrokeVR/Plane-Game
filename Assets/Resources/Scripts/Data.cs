@@ -35,6 +35,6 @@ public static class Data
         //float assist = levelOfAssistance + (maxLevel * levelMultiplier);
         //Debug.Log(assist);
         //setLevelOfAssistance(assist);
-        level = 1;
+        level = 1; 
     }
 }
