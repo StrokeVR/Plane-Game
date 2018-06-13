@@ -10,7 +10,7 @@ public static class Data
     public static float maxLevel = 5; //Inclusive
 
     public static float levelMultiplier = 0.5f;
-
+    public static int difficulty = 0;
     public static int levelToOscillate = 3; //-1 for never
     public static bool willOscillate = false;
     public static float oscillateSpeed = 0.05f;
@@ -22,9 +22,22 @@ public static class Data
     //Increment
     public static void incrementLevel()
     {
-        oscillateSpeed += 0.01f;
-        minRange = Random.Range(-4, -1);
-        maxRange = Random.Range(0, 4);
+        oscillateSpeed += 0.07f;
+        
+        if ((level % 2) == 0)
+        {
+            difficulty++;
+        }
+        if (difficulty > 4)
+            difficulty = 0;
+
+        int range = level;
+        if (range > 5)
+        {
+            range = 5;
+        } 
+        minRange = Random.Range(-range, -1);
+        maxRange = Random.Range(0, range);
         
     }
 
@@ -35,6 +48,8 @@ public static class Data
         //float assist = levelOfAssistance + (maxLevel * levelMultiplier);
         //Debug.Log(assist);
         //setLevelOfAssistance(assist);
-        level = 1; 
+        level = 1;
+        difficulty = 0;
+        oscillateSpeed = 0.1f;
     }
 }
