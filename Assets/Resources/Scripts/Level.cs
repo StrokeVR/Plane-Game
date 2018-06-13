@@ -27,12 +27,17 @@ namespace Assets.Resources.Scripts
         private readonly List<GameObject> _interactables = new List<GameObject>();    //list of current interactables (planes/boats/balloons)
         private float _timer;
 
+        public Image leftArrow;
+        public Image rightArrow;
         Score score;
         Achievements a;
 
         public void Start()
         {
+            Debug.Log(Screen.width);
             //set default score, set timer, set player positions, hide other levels' enclosures
+            leftArrow.enabled = false;
+            rightArrow.enabled = false;
             _score = 0;
             _timer = 0.0f;
             score = GameObject.Find("Score").GetComponent<Score>();
@@ -41,8 +46,10 @@ namespace Assets.Resources.Scripts
             _nextposition = Levelmanager.GetNextLevel(LevelNum);
             level.text = "LEVEL: " + Data.level;
             SetLevelEnclosure();
+
         }
 
+      
         //set a new goal
         public void SetGoal(int newGoal)
         {
@@ -82,6 +89,48 @@ namespace Assets.Resources.Scripts
             {
                 Hud.text = scoreString + _score + slash + Goal;  //score format: "score: xxxx/goal"
             }
+
+            foreach (GameObject g in _interactables)
+            {
+                if (g == null)
+                    return;
+                Vector3 screenPos = Cam.WorldToScreenPoint(g.transform.position);
+                //Debug.Log(g.gameObject.name + ": " + screenPos.x);
+                if (g.gameObject.name.Equals("plane(Clone)"))
+                {
+                    if (CanSee(g))
+                    {
+                        rightArrow.enabled = false;
+                    }
+                    else
+                    {
+                        rightArrow.enabled = true; 
+                    }
+                }
+                else if (g.gameObject.name.Equals("jet(Clone)"))
+                {
+
+                    if (CanSee(g))
+                    {
+                        leftArrow.enabled = false;
+                        
+                    }
+                    else
+                    {
+                        leftArrow.enabled = true;
+                    }
+                }
+               
+            }
+
+        }
+        private bool CanSee(GameObject Obj)
+        {
+            Plane[] planes = GeometryUtility.CalculateFrustumPlanes(Cam);
+            if (GeometryUtility.TestPlanesAABB(planes, Obj.GetComponent<BoxCollider>().bounds))
+                return true;
+            else
+                return false;
         }
 
         IEnumerator TransitionToNextLevel(int nextLevel)

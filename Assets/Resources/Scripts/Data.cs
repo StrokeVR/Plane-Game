@@ -22,7 +22,7 @@ public static class Data
     //Increment
     public static void incrementLevel()
     {
-        oscillateSpeed += 0.07f;
+        oscillateSpeed += 0.02f;
         
         if ((level % 2) == 0)
         {
