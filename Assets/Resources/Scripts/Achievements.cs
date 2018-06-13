@@ -11,7 +11,7 @@ public class Achievements : MonoBehaviour
     public string[] achievementList =
     {
         "Get to level 3",
-        "Don't miss any hoops in level 2",
+        "Don't miss the first hoop!",
     };
 
     public int missed;

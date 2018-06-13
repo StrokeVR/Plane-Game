@@ -27,9 +27,19 @@ namespace Assets.Resources.Scripts
 
         public virtual GameObject SpawnPrefab()
         {
+            Vector3 difficultyOffset = new Vector3(0, 0, Data.difficulty);
             Randomvector = new Vector3(Random.Range(-R, R), -.5f, Random.Range(R, -R));
             CurrentInteractables++;
-            return Instantiate(Prefab, transform.position + Randomvector + Offsetvector, Quaternion.identity);
+            if (Prefab.gameObject.name.Equals("hoop"))
+            {
+                return Instantiate(Prefab, transform.position + difficultyOffset + Randomvector + Offsetvector, Quaternion.identity);
+
+            }
+            else
+            {
+                return Instantiate(Prefab, transform.position + Randomvector + Offsetvector, Quaternion.identity);
+
+            }
         }
         public virtual void DecrementPrefab()
         {

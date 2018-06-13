@@ -5177,7 +5177,7 @@ MonoBehaviour:
   txt: {fileID: 1371229180}
   achievementList:
   - Get to level 3
-  - Don't miss any hoops before level 3
+  - Don't miss the first hoop
   missed: 0
   completed: 0000000000000000
 --- !u!4 &1171171466
@@ -6168,7 +6168,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1497325212}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 241.93, y: 6.25, z: 78.78}
+  m_LocalPosition: {x: 241.93, y: 6.25, z: 82.08}
   m_LocalScale: {x: 18.297316, y: 12.463454, z: 0.20692773}
   m_Children: []
   m_Father: {fileID: 0}
