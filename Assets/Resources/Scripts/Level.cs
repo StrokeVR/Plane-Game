@@ -62,6 +62,16 @@ namespace Assets.Resources.Scripts
             foreach (GameObject interactable in InteractableSpawnPoints)
             {
                 _interactables.Add(interactable.GetComponent<Spawn>().SpawnPrefab());
+                if (interactable.name.Equals("landing2"))
+                {
+                    GameObject.Find("ParticleRight").GetComponent<ParticleSystem>().Play();
+                }
+                else if (interactable.name.Equals("landing1"))
+                {
+                    GameObject.Find("ParticleLeft").GetComponent<ParticleSystem>().Play();
+                }
+
+                
             }
         }
 
