@@ -16,7 +16,9 @@ public static class Data
     public static float oscillateSpeed = 0.05f;
     public static int minRange = -2;
     public static int maxRange = 2;
-     
+
+    public static Vector3 leftWrist;
+    public static Vector3 rightWrist;
 
 
     //Increment
