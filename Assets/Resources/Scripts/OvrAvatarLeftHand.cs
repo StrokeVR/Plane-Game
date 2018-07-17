@@ -69,12 +69,13 @@ namespace Assets.Resources.Scripts
                 {
                     Debug.DrawRay(_grabbedObject.transform.position, _grabbedObject.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
                     _hoop = GameObject.Find("hoop(Clone)");
-                   // Debug.Log(Vector3.Distance(hit.point, _hoop.transform.position));
-                    if (Vector3.Distance(hit.point, _hoop.transform.position) < 1.3)
+                    // Debug.Log(Vector3.Distance(hit.point, _hoop.transform.position));
+                    
+                    if (_hoop != null && Vector3.Distance(hit.point, _hoop.transform.position) < 1.3)
                     {
                         _hoop.gameObject.GetComponent<MeshRenderer>().material = hoverMat;
                     }
-                    else
+                    else if (_hoop != null)
                     {
                         _hoop.gameObject.GetComponent<MeshRenderer>().material = defaultMat;
                     }
@@ -89,15 +90,17 @@ namespace Assets.Resources.Scripts
                             GameObject.Find("Achievements").GetComponent<Achievements>().missed++;
 
                             move = false;
+                            //Data.planesMissed++;
                         }
 
                     }
-                    Debug.Log("Did Hit; " + hit.point.ToString());
+                    //Debug.Log("Did Hit; " + hit.point.ToString());
                 }
                 else
                 {
                     Debug.DrawRay(_grabbedObject.transform.position, _grabbedObject.transform.TransformDirection(Vector3.forward) * 1000, Color.white);
-                    Debug.Log("Did not Hit");
+                    //Debug.Log("Did not Hit");
+                    //Data.planesMissed++;
                 }
 
                 
@@ -128,6 +131,8 @@ namespace Assets.Resources.Scripts
         }
         void ReleaseObject()
         {
+            Data.totalPlanes++;
+            Debug.Log(Data.totalPlanes);
             _grabbing = false;
             SetDefaultHandPose();          //set hand pose back to default
             if (_grabbedObject != null)

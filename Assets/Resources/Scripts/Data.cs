@@ -7,10 +7,13 @@ public static class Data
 
     //public static float levelOfAssistance = 10;
     public static int level = 1;
-    public static float maxLevel = 5; //Inclusive
+    //public static float maxLevel = 5; //Inclusive
+    public static int totalPlanes = 0;
 
-    public static float levelMultiplier = 0.5f;
-    public static int difficulty = 0;
+    public static int planesHit = 0;
+    public static int planesMissed = 0;
+    //public static float levelMultiplier = 0.5f;
+    public static float difficulty = 1f; 
     public static int levelToOscillate = 3; //-1 for never
     public static bool willOscillate = false;
     public static float oscillateSpeed = 0.05f;
@@ -19,27 +22,35 @@ public static class Data
 
     public static Vector3 leftWrist;
     public static Vector3 rightWrist;
-
+    
 
     //Increment
     public static void incrementLevel()
     {
-        oscillateSpeed += 0.02f;
-        
-        if ((level % 2) == 0)
-        {
-            difficulty++;
-        }
-        if (difficulty > 4)
-            difficulty = 0;
+       
+        planesMissed = totalPlanes - planesHit;
+        Debug.Log("PH: " + planesHit + "; MS: " + planesMissed);   
+        if (planesMissed == 0) planesMissed = -1;
+        float percentPlanes = ((float)(totalPlanes - planesMissed) / totalPlanes);
+        float newDifficulty = difficulty * percentPlanes;
+        if (newDifficulty <= 0.02) newDifficulty = 0.02f;
 
-        int range = level;
-        if (range > 5)
+        difficulty = newDifficulty;
+        oscillateSpeed = difficulty / 30;
+        if (difficulty >= 2)
         {
-            range = 5;
-        } 
+            willOscillate = true;
+        }
+        else
+        {
+            willOscillate = false;
+        }
+
+        int range = (int)difficulty;
+
         minRange = Random.Range(-range, -1);
         maxRange = Random.Range(0, range);
+        Debug.Log("Diff:" + difficulty + ": " + minRange + "; " + maxRange);
         
     }
 
@@ -51,7 +62,9 @@ public static class Data
         //Debug.Log(assist);
         //setLevelOfAssistance(assist);
         level = 1;
-        difficulty = 0;
+        planesHit = 0;
+        planesMissed = 0;
+        difficulty = 1;
         oscillateSpeed = 0.1f;
     }
 }
