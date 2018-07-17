@@ -13,5 +13,9 @@ public class AimingRaycast : MonoBehaviour {
 	void Update () {
         linerenderer.SetPositions(new Vector3[] {(this.gameObject.transform.position + this.gameObject.transform.forward / 2), (this.gameObject.transform.forward * 5 + this.gameObject.transform.position)});
 	}
+    void DrawGizmos()
+    {
+
+    }
 }
  

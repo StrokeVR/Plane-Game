@@ -12,6 +12,7 @@ namespace Assets.Resources.Scripts
 
         public void Start()
         {
+            
             Currlevel = GameObject.Find("PlaneLevel").GetComponent<Level>();
             //setting Layer to Default, to be changed to grabbable once the plane is in its start position on the table
             gameObject.layer = 0;
@@ -93,6 +94,7 @@ namespace Assets.Resources.Scripts
             //plane goes out of bounds
             if (other.gameObject.CompareTag("Ground"))
             {
+                
                 Currlevel.DecrementInteractables(gameObject);
                 _landing.GetComponent<Spawn>().DecrementPrefab();
                 Destroy(gameObject);

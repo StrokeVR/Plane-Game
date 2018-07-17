@@ -32,14 +32,20 @@ namespace Assets.Resources.Scripts
         Score score;
         Achievements a;
 
+        public Text diffText;
+
         public void Start()
         {
-            Debug.Log(Screen.width);
+
+            diffText.text = "Difficulty: " + (Data.difficulty * 10).ToString("0.0") + "%";
             //set default score, set timer, set player positions, hide other levels' enclosures
             leftArrow.enabled = false;
             rightArrow.enabled = false;
             _score = 0;
             _timer = 0.0f;
+            Data.planesHit = 0;
+            Data.planesMissed = 0;
+            Data.totalPlanes = 0; 
             score = GameObject.Find("Score").GetComponent<Score>();
             a = GameObject.Find("Achievements").GetComponent<Achievements>();
             //Debug.Log(Data.getLevelOfAssistance());
@@ -160,11 +166,12 @@ namespace Assets.Resources.Scripts
             _interactables.Clear();
             Data.incrementLevel();
             Data.level += 1;
-            if (Data.level == Data.levelToOscillate)
+            
+            /*if (Data.level == Data.levelToOscillate)
             {
                 Data.willOscillate = true;
             }
-           /* if (Data.level > Data.maxLevel)
+            if (Data.level > Data.maxLevel)
             {
                 Data.resetValues();
             }*/
@@ -194,6 +201,7 @@ namespace Assets.Resources.Scripts
         public void IncrementScore()
         {
             _score += 100;
+            Data.planesHit++;
             if (_score == Goal)
             {
                 Confetti = Instantiate(Confetti, Cam.transform);

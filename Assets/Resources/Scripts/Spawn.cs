@@ -27,12 +27,22 @@ namespace Assets.Resources.Scripts
 
         public virtual GameObject SpawnPrefab()
         {
-            Vector3 difficultyOffset = new Vector3(0, 0, Data.difficulty);
-            Randomvector = new Vector3(Random.Range(-R, R), -.5f, Random.Range(R, -R));
+            Vector3 difficultyOffset;
+            if (Data.difficulty <= 1)
+            {
+                float invertedZ = 1 - Data.difficulty;
+                 difficultyOffset = new Vector3(0, 0, -invertedZ * 2);
+            }
+            else
+            {
+                 difficultyOffset = new Vector3(0, 0, Data.difficulty);
+            }
+            
+            Randomvector = new Vector3(Random.Range(-R, R), -.5f, Random.Range(0.3, -0.3));
             CurrentInteractables++;
             if (Prefab.gameObject.name.Equals("hoop"))
             {
-                return Instantiate(Prefab, transform.position + difficultyOffset + Randomvector + Offsetvector, Quaternion.identity);
+                return Instantiate(Prefab, (transform.position + Randomvector + Offsetvector) + difficultyOffset, Quaternion.identity);
 
             }
             else
