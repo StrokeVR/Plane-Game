@@ -38,7 +38,7 @@ namespace Assets.Resources.Scripts
                  difficultyOffset = new Vector3(0, 0, Data.difficulty);
             }
             
-            Randomvector = new Vector3(Random.Range(-R, R), -.5f, Random.Range(0.3, -0.3));
+            Randomvector = new Vector3(Random.Range(-R, R), -.5f, Random.Range(0.3f, -0.3f));
             CurrentInteractables++;
             if (Prefab.gameObject.name.Equals("hoop"))
             {
