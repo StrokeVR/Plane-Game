@@ -30,7 +30,26 @@ public class ClientController : MonoBehaviour {
     }
     public void getData(SocketIOEvent msg)
     {
-        Debug.Log("Got data from server" + msg.data); 
+        Debug.Log("Got data from server" + msg.data);
+        Dictionary<string, string> data = new Dictionary<string, string>();
+        if (msg.data.Equals("startLevel"))
+        {
+            //Start Level
+        }
+        else if (msg.data.Equals("endLevel"))
+        {
+            //End Level
+        }
+        else if (msg.data.Equals("toggleHoop"))
+        {
+            Data.willOscillate = !Data.willOscillate;
+
+            data["type"] = "toggleHoop";
+            data["value"] = "" + Data.willOscillate;
+            socket.Emit("forClinician", new JSONObject(data));
+        }
+        
+        
     }
 	
 }
