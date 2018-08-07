@@ -34,7 +34,7 @@ public class Client : MonoBehaviour
     }
     static void ThreadMethod(object obj)
     {
-        client = new TcpClient("localhost", 1345);
+        client = new TcpClient("localhost", 1234);
 
         sw = new StreamReader(client.GetStream());
 
@@ -46,7 +46,7 @@ public class Client : MonoBehaviour
             {
 
                 string line = sw.ReadLine();
-                //Debug.Log(obj + ": " + line);
+                Debug.Log(obj + ": " + line);
                 SaveToData(line);
             }
         }
