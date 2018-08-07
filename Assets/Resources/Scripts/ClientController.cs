@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SocketIO;
+using Assets.Resources.Scripts;
+using UnityEngine.SceneManagement;
 
 public class ClientController : MonoBehaviour {
     [SerializeField]
@@ -30,7 +32,44 @@ public class ClientController : MonoBehaviour {
     }
     public void getData(SocketIOEvent msg)
     {
-        Debug.Log("Got data from server" + msg.data); 
+        Debug.Log("Got data from server" + msg.data);
+        Dictionary<string, string> data = msg.data.ToDictionary();
+        
+        string type = data["type"];
+        string value = data["data"];
+
+        Debug.Log(type);
+        switch(type)
+        {
+            case "startGame":
+                GameObject.Find("Start").GetComponent<ClickButton>().StartGame();
+                break;
+
+            case "restartGame":
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                break;
+
+            case "toggleHoop":
+                Data.willOscillate = (value.Equals("true")) ? true : false;
+                returnToClinician("toggleHoop", "" + Data.willOscillate);
+                break;
+
+            case "hoopSpeed":
+                Debug.Log("SPD: " + int.Parse(value));
+                Data.oscillateSpeed = int.Parse(value);
+                returnToClinician("hoopSpeed", "" + Data.oscillateSpeed);
+                break;
+        }
+          
+       
+    }
+
+    public void returnToClinician(string type, string value)
+    {
+        Dictionary<string, string> data = new Dictionary<string, string>();
+        data["type"] = type;
+        data["data"] = value;
+        socket.Emit("forClinician", new JSONObject(data));
     }
 	
 }
