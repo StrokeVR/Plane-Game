@@ -4,6 +4,7 @@ using UnityEngine;
 using SocketIO;
 using Assets.Resources.Scripts;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ClientController : MonoBehaviour {
     [SerializeField]
@@ -38,7 +39,7 @@ public class ClientController : MonoBehaviour {
         string type = data["type"];
         string value = data["data"];
 
-        Debug.Log(type);
+       
         switch(type)
         {
             case "startGame":
@@ -54,10 +55,12 @@ public class ClientController : MonoBehaviour {
                 returnToClinician("toggleHoop", "" + Data.willOscillate);
                 break;
 
-            case "hoopSpeed":
-                Debug.Log("SPD: " + int.Parse(value));
-                Data.oscillateSpeed = int.Parse(value);
-                returnToClinician("hoopSpeed", "" + Data.oscillateSpeed);
+            case "difficulty":
+                Debug.Log("Diff: " + float.Parse(value));
+                Data.difficulty = float.Parse(value);
+                Data.oscillateSpeed = Data.difficulty / 30;
+                GameObject.Find("Difficulty").GetComponent<Text>().text = "Difficulty: " + (Data.difficulty * 10).ToString("0.0") + "%";
+                returnToClinician("difficulty", "" + Data.difficulty);
                 break;
         }
           

@@ -34,7 +34,7 @@ public class Client : MonoBehaviour
     }
     static void ThreadMethod(object obj)
     {
-        client = new TcpClient("localhost", 1345);
+        client = new TcpClient("localhost", 1234);
 
         sw = new StreamReader(client.GetStream());
 
@@ -46,13 +46,21 @@ public class Client : MonoBehaviour
             {
 
                 string line = sw.ReadLine();
-                //Debug.Log(obj + ": " + line);
-                SaveToData(line);
+
+                Debug.Log(line);
+                if (!line.Equals("{") && !line.Equals("}")) 
+                {
+                   // Debug.Log("NOT EQUAL");
+                   SaveToData(line);
+                }
+                   
+              
+               
             }
         }
 
-        //sw.Close();
-        //client.Close();
+        sw.Close();
+        client.Close();
     }
 
     static void SaveToData(string line)
@@ -70,7 +78,11 @@ public class Client : MonoBehaviour
             case "\"Right Wrist\"":
                 Data.rightWrist = StringToVector3(vect);
                 break;
+            case "\"Center\"":
+                Data.center = StringToVector3(vect);
+                break;
         }
+        
 
     }
     public static Vector3 StringToVector3(string sVector)
