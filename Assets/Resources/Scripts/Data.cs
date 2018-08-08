@@ -22,6 +22,7 @@ public static class Data
 
     public static Vector3 leftWrist;
     public static Vector3 rightWrist;
+    public static Vector3 center;
     
 
     //Increment

@@ -35,7 +35,7 @@ namespace Assets.Resources.Scripts
             }
             else
             {
-                 difficultyOffset = new Vector3(0, 0, Data.difficulty);
+                 difficultyOffset = new Vector3(0, 0, Data.difficulty / 1.5f);
             }
             
             Randomvector = new Vector3(Random.Range(-R, R), -.5f, Random.Range(0.3f, -0.3f));
