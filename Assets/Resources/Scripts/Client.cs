@@ -54,8 +54,6 @@ public class Client : MonoBehaviour
                    SaveToData(line);
                 }
                    
-              
-               
             }
         }
 

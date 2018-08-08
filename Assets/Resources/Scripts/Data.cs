@@ -53,6 +53,8 @@ public static class Data
         maxRange = Random.Range(0, range);
         Debug.Log("Diff:" + difficulty + ": " + minRange + "; " + maxRange);
         
+        GameObject.Find("Client").GetComponent<ClientController>().returnToClinician("hoopSpeed", "" + oscillateSpeed);
+
     }
 
     public static void resetValues()

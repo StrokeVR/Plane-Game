@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/PlaneGame.unity
     guid: 56437e88562f64d49abb70a0bd78b6f8
+  - enabled: 1
+    path: Assets/Restart.unity
+    guid: 9f108a2dbdf555f418ae30635858ceff
