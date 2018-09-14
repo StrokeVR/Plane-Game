@@ -41,7 +41,6 @@ public class KinectManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Start () {
-        
         _sensor = KinectSensor.GetDefault();
         if (_sensor != null)
         {
@@ -67,12 +66,11 @@ public class KinectManager : MonoBehaviour {
                 foreach (var body in _bodies.Where(b => b.IsTracked))
                 {
                     isKinect = true;
-                    Debug.Log("Tracking");
+                    //Debug.Log("Tracking");
                     if (body.HandRightConfidence == TrackingConfidence.High)
                     {
-                        
                         Windows.Kinect.Joint handRight = body.Joints[JointType.HandRight];
-                        rightHand.transform.localPosition = new Vector3(handRight.Position.X, handRight.Position.Y, handRight.Position.Z);
+                        rightHand.transform.localPosition = new Vector3(handRight.Position.X, handRight.Position.Y, 1.0f - handRight.Position.Z);
                         if (body.HandRightState == HandState.Open)
                         {
                             rightHand.GetComponent<MeshRenderer>().material = def;
@@ -88,7 +86,7 @@ public class KinectManager : MonoBehaviour {
                     if (body.HandLeftConfidence == TrackingConfidence.High)
                     {
                         Windows.Kinect.Joint handLeft = body.Joints[JointType.HandLeft];
-                        leftHand.transform.localPosition = new Vector3(handLeft.Position.X, handLeft.Position.Y, handLeft.Position.Z);
+                        leftHand.transform.localPosition = new Vector3(handLeft.Position.X, handLeft.Position.Y, 1.0f - handLeft.Position.Z);
                 
                         if (body.HandLeftState == HandState.Open)
                         {

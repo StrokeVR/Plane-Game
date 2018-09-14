@@ -46,7 +46,7 @@ public static class Data
         {
             willOscillate = false;
         }
-
+        
         int range = (int)difficulty;
 
         minRange = Random.Range(-range, -1);
