@@ -88,7 +88,6 @@ namespace Assets.Resources.Scripts
                             move = false;
                             //Data.planesMissed++;
                         }
-
                     }
                     //Debug.Log("Did Hit; " + hit.point.ToString());
                 }
@@ -98,8 +97,6 @@ namespace Assets.Resources.Scripts
                     //Debug.Log("Did not Hit");
                     //Data.planesMissed++;
                 }
-
-
             }
         }
 

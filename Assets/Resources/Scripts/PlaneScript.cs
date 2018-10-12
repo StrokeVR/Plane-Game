@@ -17,7 +17,7 @@ namespace Assets.Resources.Scripts
             //setting Layer to Default, to be changed to grabbable once the plane is in its start position on the table
             gameObject.layer = 0;
             //random vibrant color for new plane
-            Color randColor = Random.ColorHSV(0f,1f,80f,100f,0f,1f); //to change
+            Color randColor = Random.ColorHSV(0f,1f,80f,100f,0f,0.5f); //to change
             int planeType = PlaneColorSelection(randColor);
             if(planeType == 0)
             {

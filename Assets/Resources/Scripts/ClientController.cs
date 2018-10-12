@@ -63,8 +63,6 @@ public class ClientController : MonoBehaviour {
                 returnToClinician("difficulty", "" + Data.difficulty);
                 break;
         }
-          
-       
     }
 
     public void returnToClinician(string type, string value)
