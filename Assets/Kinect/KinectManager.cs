@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Windows.Kinect;
-
 using System.Linq;
 
 public class KinectManager : MonoBehaviour {
@@ -11,7 +10,6 @@ public class KinectManager : MonoBehaviour {
     private BodyFrameReader _bodyFramereader;
     private Body[] _bodies = null;
 
-    public bool isKinect;
     public Camera mainCamera;
     public OVRCameraRig ovrcamera;
 
@@ -41,12 +39,10 @@ public class KinectManager : MonoBehaviour {
 
 	}
 	
-	// Update is called once per frame
 	void Start () {
         _sensor = KinectSensor.GetDefault();
         if (_sensor != null)
         {
-            isKinect = _sensor.IsAvailable;
             _bodyFramereader = _sensor.BodyFrameSource.OpenReader();
             if (!_sensor.IsOpen)
             {
@@ -57,8 +53,6 @@ public class KinectManager : MonoBehaviour {
 	}
     void Update()
     {
-        isKinect = _sensor.IsAvailable;
-
         if (_bodyFramereader != null)
         {
             var frame = _bodyFramereader.AcquireLatestFrame();
@@ -67,32 +61,23 @@ public class KinectManager : MonoBehaviour {
                 frame.GetAndRefreshBodyData(_bodies); 
                 foreach (var body in _bodies.Where(b => b.IsTracked))
                 {
-                    isKinect = true;
-
                     Windows.Kinect.Joint head = body.Joints[JointType.Head];
 
-                    // total local position of oculus headset relative to player object
+                    // total local Y position of oculus headset relative to ovrplayer object
+                    float oculusCameraY = mainCamera.transform.localPosition.y + ovrcamera.transform.localPosition.y;
+
+                    // total local Z position of oculus headset relative to ovrplayer object
                     float oculusCameraZ = mainCamera.transform.localPosition.z + ovrcamera.transform.localPosition.z;
 
-                    // finding the difference between the kinect head position and the headset position
-                    float oculusAndKinectDiffY = oculusCameraZ - head.Position.Y;
-                    
+                    // finding the Y position difference between the kinect head position and the headset position
+                    float oculusAndKinectDiffY = head.Position.Y - oculusCameraY;
+
                     if (body.HandRightConfidence == TrackingConfidence.High)
                     {
                         Windows.Kinect.Joint handRight = body.Joints[JointType.HandRight];
                         
                         // offset kinect hand position with calculated difference between kinect head tracking and oculus headset position
-                        rightHand.transform.localPosition = new Vector3(handRight.Position.X, handRight.Position.Y + oculusAndKinectDiffY, (head.Position.Z - handRight.Position.Z) + oculusCameraZ);
-
-                        if (body.HandRightState == HandState.Open)
-                        {
-                            rightHand.GetComponent<MeshRenderer>().material = def;
-                        }
-                        else if (body.HandRightState == HandState.Closed)
-                        {
-                            rightHand.GetComponent<MeshRenderer>().material = grab;
-                        }
-
+                        rightHand.transform.localPosition = new Vector3(handRight.Position.X, handRight.Position.Y - oculusAndKinectDiffY, (head.Position.Z - handRight.Position.Z) + oculusCameraZ);
                         GameObject.Find("Client").GetComponent<ClientController>().returnToClinician("kinectDataRight", "RightHand: {X: " +  handRight.Position.X + ", Y: " + handRight.Position.Y + ", Z: " + handRight.Position.Z + "}");
                     }
                     
@@ -100,7 +85,7 @@ public class KinectManager : MonoBehaviour {
                     {
                         Windows.Kinect.Joint handLeft = body.Joints[JointType.HandLeft];
                         // offset kinect hand position with calculated difference between kinect head tracking and oculus headset position
-                        leftHand.transform.localPosition = new Vector3(handLeft.Position.X, handLeft.Position.Y + oculusAndKinectDiffY, (head.Position.Z - handLeft.Position.Z) + oculusCameraZ);
+                        leftHand.transform.localPosition = new Vector3(handLeft.Position.X, handLeft.Position.Y - oculusAndKinectDiffY, (head.Position.Z - handLeft.Position.Z) + oculusCameraZ);
                 
                         if (body.HandLeftState == HandState.Open)
                         {

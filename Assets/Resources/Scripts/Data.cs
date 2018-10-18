@@ -5,16 +5,16 @@ using UnityEngine;
 public static class Data
 {
 
-    //public static float levelOfAssistance = 10;
+    // public static float levelOfAssistance = 10;
     public static int level = 1;
-    //public static float maxLevel = 5; //Inclusive
+    // public static float maxLevel = 5; //Inclusive
     public static int totalPlanes = 0;
 
     public static int planesHit = 0;
     public static int planesMissed = 0;
-    //public static float levelMultiplier = 0.5f;
+    // public static float levelMultiplier = 0.5f;
     public static float difficulty = 1f; 
-    public static int levelToOscillate = 3; //-1 for never
+    public static int levelToOscillate = 3; // -1 for never
     public static bool willOscillate = false;
     public static float oscillateSpeed = 0.05f;
     public static int minRange = -2;
@@ -25,7 +25,7 @@ public static class Data
     public static Vector3 center;
     
 
-    //Increment
+    // Increment
     public static void incrementLevel()
     {
        
@@ -59,9 +59,9 @@ public static class Data
     {
 
         willOscillate = false;
-        //float assist = levelOfAssistance + (maxLevel * levelMultiplier);
-        //Debug.Log(assist);
-        //setLevelOfAssistance(assist);
+        // float assist = levelOfAssistance + (maxLevel * levelMultiplier);
+        // Debug.Log(assist);
+        // setLevelOfAssistance(assist);
         level = 1;
         planesHit = 0;
         planesMissed = 0;

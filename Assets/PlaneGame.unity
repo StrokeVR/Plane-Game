@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 16889182}
   - component: {fileID: 16889184}
   - component: {fileID: 16889183}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -594,7 +594,6 @@ MonoBehaviour:
   ovrcamera: {fileID: 1067082773}
   rightHand: {fileID: 1222762277}
   leftHand: {fileID: 2016579473}
-  head: {fileID: 0}
   def: {fileID: 2100000, guid: 10653341101ecff4e801e5b5c077d9a5, type: 2}
   grab: {fileID: 2100000, guid: d21719e516923cf439028bb334eacbf0, type: 2}
 --- !u!1 &141276082
@@ -741,7 +740,7 @@ GameObject:
   - component: {fileID: 205218133}
   - component: {fileID: 205218135}
   - component: {fileID: 205218134}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1608,7 +1607,7 @@ GameObject:
   - component: {fileID: 405976880}
   - component: {fileID: 405976879}
   - component: {fileID: 405976878}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Start
   m_TagString: Button
   m_Icon: {fileID: 0}
@@ -9574,7 +9573,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 666942023}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Start Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13351,7 +13350,7 @@ GameObject:
   - component: {fileID: 810791339}
   - component: {fileID: 810791341}
   - component: {fileID: 810791340}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ExitFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13709,7 +13708,7 @@ GameObject:
   - component: {fileID: 875942049}
   - component: {fileID: 875942051}
   - component: {fileID: 875942050}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13887,7 +13886,7 @@ GameObject:
   - component: {fileID: 893492944}
   - component: {fileID: 893492946}
   - component: {fileID: 893492945}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: StartFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13963,7 +13962,7 @@ GameObject:
   - component: {fileID: 941333532}
   - component: {fileID: 941333531}
   - component: {fileID: 941333530}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Restart
   m_TagString: Button
   m_Icon: {fileID: 0}
@@ -14331,7 +14330,7 @@ GameObject:
   - component: {fileID: 974175155}
   - component: {fileID: 974175154}
   - component: {fileID: 974175153}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Exit
   m_TagString: Button
   m_Icon: {fileID: 0}
@@ -22808,7 +22807,7 @@ GameObject:
   - component: {fileID: 1371229179}
   - component: {fileID: 1371229181}
   - component: {fileID: 1371229180}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: AchievementTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23496,7 +23495,7 @@ GameObject:
   - component: {fileID: 1518846609}
   - component: {fileID: 1518846611}
   - component: {fileID: 1518846610}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24262,7 +24261,7 @@ GameObject:
   - component: {fileID: 1708596981}
   - component: {fileID: 1708596983}
   - component: {fileID: 1708596982}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25093,7 +25092,7 @@ GameObject:
   - component: {fileID: 1833603195}
   - component: {fileID: 1833603197}
   - component: {fileID: 1833603196}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ExitFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25626,7 +25625,7 @@ GameObject:
   - component: {fileID: 1960088140}
   - component: {fileID: 1960088142}
   - component: {fileID: 1960088141}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26283,7 +26282,7 @@ GameObject:
   - component: {fileID: 2050826489}
   - component: {fileID: 2050826488}
   - component: {fileID: 2050826487}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Start Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
