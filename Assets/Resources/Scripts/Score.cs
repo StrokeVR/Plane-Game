@@ -79,7 +79,7 @@ public class Score : MonoBehaviour {
         }
 
 
-        Debug.Log(this.level); 
+        // Debug.Log(this.level); 
         bestLevel.text = "Best: " + this.level;
     }
    

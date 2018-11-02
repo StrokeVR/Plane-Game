@@ -75,7 +75,7 @@ public class OvrAvatar : MonoBehaviour
 
     public UnityEvent AssetsDoneLoading = new UnityEvent();
     bool assetsFinishedLoading = false;
-
+    
     public Transform LeftHandCustomPose;
     public Transform RightHandCustomPose;
     Transform cachedLeftHandCustomPose;

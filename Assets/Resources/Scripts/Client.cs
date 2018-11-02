@@ -19,7 +19,6 @@ public class Client : MonoBehaviour
     }
     void OnApplicationQuit()
     {
-        Debug.Log("hi");
         try
         {
             sw.Close();

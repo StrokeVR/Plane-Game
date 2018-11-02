@@ -21,12 +21,12 @@ namespace Assets.Resources.Scripts
             int planeType = PlaneColorSelection(randColor);
             if(planeType == 0)
             {
-                _hand = GameObject.Find("hand_right");
+                _hand = GameObject.Find("Oculus_Hand_Right");
                 _hand.GetComponent<OvrAvatarRightHand>().SetReleasedToFalse();
             }
             else if (planeType == 1)
             {
-                _hand = GameObject.Find("hand_left");
+                _hand = GameObject.Find("Oculus_Hand_Left");
                 _hand.GetComponent<OvrAvatarLeftHand>().SetReleasedToFalse();                  
             }
         }
