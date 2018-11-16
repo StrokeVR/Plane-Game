@@ -74,13 +74,20 @@ public class KinectManager : MonoBehaviour {
                     // finding the Y position difference between the kinect head position and the headset position
                     float oculusAndKinectDiffY = head.Position.Y - oculusCameraY;
 
-                    if (body.HandRightConfidence == TrackingConfidence.High)
+                    if (body.HandRightConfidence == TrackingConfidence.Low)
                     {
-                        Windows.Kinect.Joint handRight = body.Joints[JointType.HandRight];
-                        
+                        Windows.Kinect.Joint kinectHandRight = body.Joints[JointType.HandRight];
+                        Windows.Kinect.Joint kinectElbowRight = body.Joints[JointType.ElbowRight];
+
                         // offset kinect hand position with calculated difference between kinect head tracking and oculus headset position
-                        rightHand.transform.localPosition = new Vector3(handRight.Position.X, handRight.Position.Y - oculusAndKinectDiffY, (head.Position.Z - handRight.Position.Z) + oculusCameraZ);
-                        
+                        rightHand.transform.localPosition = new Vector3(kinectHandRight.Position.X, kinectHandRight.Position.Y - oculusAndKinectDiffY, (head.Position.Z - kinectHandRight.Position.Z) + oculusCameraZ);
+
+
+                        //Vector3 wrist_rotation_angle = Mathf.Acos(Mathf.Pow(kinectHandRight.Position.Z - kinectWristRight.Position.Z, kinectHandRight.Position.Z));
+
+                        //rightHand.transform.rotation = new Quaternion(0,Mathf.Abs(kinectHandRight.Position.Z - kinectWristRight.Position.Z),0, wrist_rotation_angle);
+                        rightHand.transform.localRotation = Quaternion.LookRotation(new Vector3(-(kinectElbowRight.Position.X - kinectHandRight.Position.X),
+                            -(kinectElbowRight.Position.Y - kinectHandRight.Position.Y), kinectElbowRight.Position.Z - kinectHandRight.Position.Z));
                         
                         if (body.HandRightState == HandState.Open)
                         {
@@ -90,17 +97,19 @@ public class KinectManager : MonoBehaviour {
                         {
 
                         }
-                        
 
-                        GameObject.Find("Client").GetComponent<ClientController>().returnToClinician("kinectDataRight", "RightHand: {X: " +  handRight.Position.X + ", Y: " + handRight.Position.Y + ", Z: " + handRight.Position.Z + "}");
+                        GameObject.Find("Client").GetComponent<ClientController>().returnToClinician("kinectDataRight", "RightHand: {X: " +  kinectHandRight.Position.X + ", Y: " + kinectHandRight.Position.Y + ", Z: " + kinectHandRight.Position.Z + "}");
                     }
                     
                     if (body.HandLeftConfidence == TrackingConfidence.High)
                     {
-                        Windows.Kinect.Joint handLeft = body.Joints[JointType.HandLeft];
+                        Windows.Kinect.Joint kinectHandLeft = body.Joints[JointType.HandLeft];
+                        Windows.Kinect.Joint kinectElbowLeft = body.Joints[JointType.ElbowLeft];
                         // offset kinect hand position with calculated difference between kinect head tracking and oculus headset position
-                        leftHand.transform.localPosition = new Vector3(handLeft.Position.X, handLeft.Position.Y - oculusAndKinectDiffY, (head.Position.Z - handLeft.Position.Z) + oculusCameraZ);
-                        
+                        leftHand.transform.localPosition = new Vector3(kinectHandLeft.Position.X, kinectHandLeft.Position.Y - oculusAndKinectDiffY, (head.Position.Z - kinectHandLeft.Position.Z) + oculusCameraZ);
+
+                        leftHand.transform.localRotation = Quaternion.LookRotation(new Vector3(-(kinectElbowLeft.Position.X - kinectHandLeft.Position.X),
+                            -(kinectElbowLeft.Position.Y - kinectHandLeft.Position.Y), kinectElbowLeft.Position.Z - kinectHandLeft.Position.Z));
                         if (body.HandLeftState == HandState.Open)
                         {
 
@@ -110,7 +119,7 @@ public class KinectManager : MonoBehaviour {
 
                         }
                         
-                        GameObject.Find("Client").GetComponent<ClientController>().returnToClinician("kinectDataLeft", "LeftHand: {X: " + handLeft.Position.X + ", Y: " + handLeft.Position.Y + ", Z: " + handLeft.Position.Z + "}");
+                        GameObject.Find("Client").GetComponent<ClientController>().returnToClinician("kinectDataLeft", "LeftHand: {X: " + kinectHandLeft.Position.X + ", Y: " + kinectHandLeft.Position.Y + ", Z: " + kinectHandLeft.Position.Z + "}");
                     }
 
                 }

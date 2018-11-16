@@ -571,7 +571,7 @@ RectTransform:
   - {fileID: 1947401646}
   - {fileID: 184856446}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -593,8 +593,8 @@ MonoBehaviour:
   ovrcamera: {fileID: 1067082773}
   rightHand: {fileID: 1222762277}
   leftHand: {fileID: 2016579473}
-  oculus_rightHand: {fileID: 1807004989}
-  oculus_leftHand: {fileID: 627023210}
+  oculusRightHand: {fileID: 1807004988}
+  oculusLeftHand: {fileID: 627023209}
 --- !u!1 &141276082
 GameObject:
   m_ObjectHideFlags: 0
@@ -14885,7 +14885,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1092526988
 MonoBehaviour:
@@ -15184,12 +15184,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1127444122}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.403, z: 5.66}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 242.654, y: 2.238, z: 74.254}
   m_LocalScale: {x: 0.04810036, y: 0.063105956, z: 1}
   m_Children:
   - {fileID: 2050826485}
-  m_Father: {fileID: 1818517991}
+  m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1129879946
@@ -15411,7 +15411,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1188361961
 GameObject:
@@ -18895,8 +18895,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1222762278}
-  - component: {fileID: 1222762282}
-  - component: {fileID: 1222762281}
   - component: {fileID: 1222762280}
   m_Layer: 0
   m_Name: Kinect_Hand_Right
@@ -18952,25 +18950,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &1222762281
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1222762277}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &1222762282
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1222762277}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1242290314 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: 4d948ad1ce5f4224c96525f3e9c54949, type: 2}
@@ -24740,7 +24719,6 @@ Transform:
   - {fileID: 1067082771}
   - {fileID: 1818517994}
   - {fileID: 952832775}
-  - {fileID: 1127444123}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25367,7 +25345,7 @@ Transform:
   m_Children:
   - {fileID: 1839285643}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1960088139
 GameObject:
@@ -25881,9 +25859,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2016579474}
-  - component: {fileID: 2016579476}
   - component: {fileID: 2016579475}
-  - component: {fileID: 2016579477}
   m_Layer: 0
   m_Name: Kinect_Hand_Left
   m_TagString: Untagged
@@ -25938,25 +25914,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &2016579476
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2016579473}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &2016579477
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2016579473}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &2044492660
 GameObject:
   m_ObjectHideFlags: 0

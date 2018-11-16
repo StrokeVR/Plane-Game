@@ -136,6 +136,7 @@ namespace Assets.Resources.Scripts
                 _grabbedObject.transform.parent = null;
                 _grabbedObject.GetComponent<Rigidbody>().isKinematic = false;
                 _grabbedObject.GetComponent<LineRenderer>().enabled = false;
+                _grabbedObject.GetComponentInChildren<Animation>().Play();
                 move = true;
                 // _hoop = GameObject.Find("hoop(Clone)");
                 // vector to determine ideal flight path towards the hoop

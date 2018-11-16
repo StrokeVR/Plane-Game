@@ -101,7 +101,7 @@ namespace Assets.Resources.Scripts
             }
             if (other.gameObject.CompareTag("Collider"))
             {
-                if (_hand.name == "hand_right")
+                if (_hand.name == "Oculus_Hand_Right")
                 {
                     _hand.GetComponent<OvrAvatarRightHand>().SetExtendedToTrue();
                 }
