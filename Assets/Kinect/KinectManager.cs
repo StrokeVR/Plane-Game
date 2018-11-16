@@ -74,6 +74,7 @@ public class KinectManager : MonoBehaviour {
                     // finding the Y position difference between the kinect head position and the headset position
                     float oculusAndKinectDiffY = head.Position.Y - oculusCameraY;
 
+                    Windows.Kinect.Joint pelvis = body.Joints[JointType.SpineBase];
                     if (body.HandRightConfidence == TrackingConfidence.Low)
                     {
                         Windows.Kinect.Joint kinectHandRight = body.Joints[JointType.HandRight];
@@ -82,12 +83,13 @@ public class KinectManager : MonoBehaviour {
                         // offset kinect hand position with calculated difference between kinect head tracking and oculus headset position
                         rightHand.transform.localPosition = new Vector3(kinectHandRight.Position.X, kinectHandRight.Position.Y - oculusAndKinectDiffY, (head.Position.Z - kinectHandRight.Position.Z) + oculusCameraZ);
 
+                        // offset kinect hand Z rotation relative to X distance away from body
+                        Vector3 dist_from_pelvis_X = new Vector3(pelvis.Position.X - kinectHandRight.Position.X, 0,0);
 
-                        //Vector3 wrist_rotation_angle = Mathf.Acos(Mathf.Pow(kinectHandRight.Position.Z - kinectWristRight.Position.Z, kinectHandRight.Position.Z));
-
-                        //rightHand.transform.rotation = new Quaternion(0,Mathf.Abs(kinectHandRight.Position.Z - kinectWristRight.Position.Z),0, wrist_rotation_angle);
-                        rightHand.transform.localRotation = Quaternion.LookRotation(new Vector3(-(kinectElbowRight.Position.X - kinectHandRight.Position.X),
+                        Quaternion YRotation = Quaternion.LookRotation(new Vector3(-(kinectElbowRight.Position.X - kinectHandRight.Position.X),
                             -(kinectElbowRight.Position.Y - kinectHandRight.Position.Y), kinectElbowRight.Position.Z - kinectHandRight.Position.Z));
+                        YRotation.z -= Mathf.Abs(dist_from_pelvis_X.x);
+                        rightHand.transform.localRotation = YRotation;
                         
                         if (body.HandRightState == HandState.Open)
                         {
@@ -101,15 +103,21 @@ public class KinectManager : MonoBehaviour {
                         GameObject.Find("Client").GetComponent<ClientController>().returnToClinician("kinectDataRight", "RightHand: {X: " +  kinectHandRight.Position.X + ", Y: " + kinectHandRight.Position.Y + ", Z: " + kinectHandRight.Position.Z + "}");
                     }
                     
-                    if (body.HandLeftConfidence == TrackingConfidence.High)
+                    if (body.HandLeftConfidence == TrackingConfidence.Low)
                     {
                         Windows.Kinect.Joint kinectHandLeft = body.Joints[JointType.HandLeft];
                         Windows.Kinect.Joint kinectElbowLeft = body.Joints[JointType.ElbowLeft];
                         // offset kinect hand position with calculated difference between kinect head tracking and oculus headset position
                         leftHand.transform.localPosition = new Vector3(kinectHandLeft.Position.X, kinectHandLeft.Position.Y - oculusAndKinectDiffY, (head.Position.Z - kinectHandLeft.Position.Z) + oculusCameraZ);
+                        
+                        // offset kinect hand Z rotation relative to X distance away from body
+                        Vector3 dist_from_pelvis_X = new Vector3(pelvis.Position.X - kinectHandLeft.Position.X, 0, 0);
 
-                        leftHand.transform.localRotation = Quaternion.LookRotation(new Vector3(-(kinectElbowLeft.Position.X - kinectHandLeft.Position.X),
+                        Quaternion YRotation = Quaternion.LookRotation(new Vector3(-(kinectElbowLeft.Position.X - kinectHandLeft.Position.X),
                             -(kinectElbowLeft.Position.Y - kinectHandLeft.Position.Y), kinectElbowLeft.Position.Z - kinectHandLeft.Position.Z));
+                        YRotation.z -= Mathf.Abs(dist_from_pelvis_X.x);
+                        leftHand.transform.localRotation = YRotation;
+
                         if (body.HandLeftState == HandState.Open)
                         {
 
