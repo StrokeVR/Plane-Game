@@ -88,9 +88,10 @@ public class KinectManager : MonoBehaviour {
 
                         Quaternion YRotation = Quaternion.LookRotation(new Vector3(-(kinectElbowRight.Position.X - kinectHandRight.Position.X),
                             -(kinectElbowRight.Position.Y - kinectHandRight.Position.Y), kinectElbowRight.Position.Z - kinectHandRight.Position.Z));
-                        YRotation.z -= Mathf.Abs(dist_from_pelvis_X.x);
+                        YRotation.z += Mathf.Abs(dist_from_pelvis_X.x);
                         rightHand.transform.localRotation = YRotation;
                         
+                        /*
                         if (body.HandRightState == HandState.Open)
                         {
                             
@@ -99,6 +100,7 @@ public class KinectManager : MonoBehaviour {
                         {
 
                         }
+                        */
 
                         GameObject.Find("Client").GetComponent<ClientController>().returnToClinician("kinectDataRight", "RightHand: {X: " +  kinectHandRight.Position.X + ", Y: " + kinectHandRight.Position.Y + ", Z: " + kinectHandRight.Position.Z + "}");
                     }
@@ -118,6 +120,7 @@ public class KinectManager : MonoBehaviour {
                         YRotation.z -= Mathf.Abs(dist_from_pelvis_X.x);
                         leftHand.transform.localRotation = YRotation;
 
+                        /*
                         if (body.HandLeftState == HandState.Open)
                         {
 
@@ -126,7 +129,8 @@ public class KinectManager : MonoBehaviour {
                         {
 
                         }
-                        
+                        */
+
                         GameObject.Find("Client").GetComponent<ClientController>().returnToClinician("kinectDataLeft", "LeftHand: {X: " + kinectHandLeft.Position.X + ", Y: " + kinectHandLeft.Position.Y + ", Z: " + kinectHandLeft.Position.Z + "}");
                     }
 
