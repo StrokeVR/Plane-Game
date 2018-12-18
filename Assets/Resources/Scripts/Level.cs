@@ -8,23 +8,23 @@ namespace Assets.Resources.Scripts
 {
     public class Level : MonoBehaviour
     {
-        //level objects contain all the info to create a level:
-        public OVRPlayerController Player;                  //player object
-        public int LevelNum;                                //level number
+        // level objects contain all the info to create a level:
+        public OVRPlayerController Player;                  // player object
+        public int LevelNum;                                // level number
 
-        public GameObject[] InteractableSpawnPoints;        //start positions of objects the player can pick up
-        public GameObject[] TargetSpawnPoints;              //start positions  of objects the player aims for (hoops)
-        public Text Hud;                                 //heads-up display text (the score)
+        public GameObject[] InteractableSpawnPoints;        // start positions of objects the player can pick up
+        public GameObject[] TargetSpawnPoints;              // start positions  of objects the player aims for (hoops)
+        public Text Hud;                                    // heads-up display text (the score)
         public Text level;
-        public int Goal;                                    //the score goal
-        public LevelManager Levelmanager;                   //reference to our scene's levelmanager
-        public GameObject Confetti;                         //confetti animation
-        public Camera Cam;                                  //player main camera
+        public int Goal;                                    // the score goal
+        public LevelManager Levelmanager;                   // reference to our scene's levelmanager
+        public GameObject Confetti;                         // confetti animation
+        public Camera Cam;                                  // player main camera
         public bool EndScreen;
 
-        private int _score;                                 //current score
-        private GameObject _nextposition;                   //array of player positions
-        private readonly List<GameObject> _interactables = new List<GameObject>();    //list of current interactables (planes/boats/balloons)
+        private int _score;                                 // current score
+        private GameObject _nextposition;                   // array of player positions
+        private readonly List<GameObject> _interactables = new List<GameObject>();    // list of current interactables (planes/boats/balloons)
         private float _timer;
 
         public Image leftArrow;
@@ -38,7 +38,7 @@ namespace Assets.Resources.Scripts
         {
 
             diffText.text = "Difficulty: " + (Data.difficulty * 10).ToString("0.0") + "%";
-            //set default score, set timer, set player positions, hide other levels' enclosures
+            // set default score, set timer, set player positions, hide other levels' enclosures
             leftArrow.enabled = false;
             rightArrow.enabled = false;
             _score = 0;
@@ -48,7 +48,7 @@ namespace Assets.Resources.Scripts
             Data.totalPlanes = 0; 
             score = GameObject.Find("Score").GetComponent<Score>();
             a = GameObject.Find("Achievements").GetComponent<Achievements>();
-            //Debug.Log(Data.getLevelOfAssistance());
+            // Debug.Log(Data.getLevelOfAssistance());
             _nextposition = Levelmanager.GetNextLevel(LevelNum);
             level.text = "LEVEL: " + Data.level;
             SetLevelEnclosure();
@@ -56,13 +56,13 @@ namespace Assets.Resources.Scripts
         }
 
       
-        //set a new goal
+        // set a new goal
         public void SetGoal(int newGoal)
         {
             Goal = newGoal;
         } 
 
-        //trigger creation of new interactable objects
+        // trigger creation of new interactable objects
         public void SpawnInteractableObjects()
         {
             foreach (GameObject interactable in InteractableSpawnPoints)
@@ -81,7 +81,7 @@ namespace Assets.Resources.Scripts
             }
         }
 
-        //update heads up display
+        // update heads up display
         public void Update()
         {
             _timer += Time.deltaTime;
@@ -111,7 +111,7 @@ namespace Assets.Resources.Scripts
                 if (g == null)
                     return;
                 Vector3 screenPos = Cam.WorldToScreenPoint(g.transform.position);
-                //Debug.Log(g.gameObject.name + ": " + screenPos.x);
+                // Debug.Log(g.gameObject.name + ": " + screenPos.x);
                 if (g.gameObject.name.Equals("plane(Clone)"))
                 {
                     if (CanSee(g))
@@ -153,10 +153,10 @@ namespace Assets.Resources.Scripts
         {
             yield return new WaitForSeconds(5);
             Cam.GetComponent<OVRScreenFade>().StartFade();
-            //set back to default hand poses
+            // set back to default hand poses
             Player.GetComponentInChildren<OvrAvatarLeftHand>().SetDefaultHandPose();
             Player.GetComponentInChildren<OvrAvatarRightHand>().setDefaultHandPose();
-            //move player to new position
+            // move player to new position
             Levelmanager.SetPlayerPosition(nextLevel);
             Cam.GetComponent<OVRScreenFade>().OnLevelFinishedLoading(LevelNum-1);
             LevelNum++;
@@ -180,12 +180,12 @@ namespace Assets.Resources.Scripts
             a.checkAllAchievements(Data.level);
                SceneManager.LoadScene("PlaneGame");
             
-            //Levelmanager.NextLevel();
+            // Levelmanager.NextLevel();
         }
 
         void SetLevelEnclosure()
         {
-            //set all previous enclosure to disabled, and enable this level's enclosure
+            // set all previous enclosure to disabled, and enable this level's enclosure
             Levelmanager.GetPreviousLevel(LevelNum).gameObject.GetComponent<EnableEnclosure>().Disable();
             gameObject.GetComponent<EnableEnclosure>().Enable();
         }
@@ -205,11 +205,11 @@ namespace Assets.Resources.Scripts
             if (_score == Goal)
             {
                 Confetti = Instantiate(Confetti, Cam.transform);
-                //destroy interactables (plane/boat/balloon)
+                // destroy interactables (plane/boat/balloon)
                 foreach (GameObject interact in _interactables)
                 {
                     Destroy(interact);
-                }//destroy interactables (plane/boat/balloon)
+                }// destroy interactables (plane/boat/balloon)
                 foreach (GameObject interact in _interactables)
                 {
                     Destroy(interact);

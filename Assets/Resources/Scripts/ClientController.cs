@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class ClientController : MonoBehaviour {
     [SerializeField]
     public SocketIOComponent socket;
-	// Use this for initialization
+
 	void Start () {
         StartCoroutine(ConnectToServer());
         socket.On("USER_CONNECTED", OnUserConnected);
@@ -63,8 +63,6 @@ public class ClientController : MonoBehaviour {
                 returnToClinician("difficulty", "" + Data.difficulty);
                 break;
         }
-          
-       
     }
 
     public void returnToClinician(string type, string value)

@@ -19,13 +19,11 @@ public class Client : MonoBehaviour
     }
     void OnApplicationQuit()
     {
-        Debug.Log("hi");
         try
         {
             sw.Close();
             client.Close();
             thread.Abort();
-
         }
         catch (Exception e)
         {
@@ -52,8 +50,7 @@ public class Client : MonoBehaviour
                 {
                    // Debug.Log("NOT EQUAL");
                    SaveToData(line);
-                }
-                   
+                }              
             }
         }
 
@@ -69,9 +66,7 @@ public class Client : MonoBehaviour
         switch (type)
         {
             case "\"Left Wrist\"":
-
                 Data.leftWrist = StringToVector3(vect);
-
                 break;
             case "\"Right Wrist\"":
                 Data.rightWrist = StringToVector3(vect);
@@ -80,8 +75,6 @@ public class Client : MonoBehaviour
                 Data.center = StringToVector3(vect);
                 break;
         }
-        
-
     }
     public static Vector3 StringToVector3(string sVector)
     {

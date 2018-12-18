@@ -38,6 +38,11 @@ namespace Assets.Resources.Scripts
             this.GetComponentInParent<OvrAvatar>().LeftHandCustomPose = null;
         }
 
+        public void setGrabHandPose()
+        {
+            this.GetComponentInParent<OvrAvatar>().LeftHandCustomPose = GripTransform;
+        }
+
         void Update()
         {
             //detection of grabbable objects nearby within grabRadius
@@ -117,7 +122,7 @@ namespace Assets.Resources.Scripts
             {
                 if (_hits[i].distance < _hits[closestHit].distance) closestHit = i;
             }
-            this.GetComponentInParent<OvrAvatar>().LeftHandCustomPose = GripTransform;     //change pose of hand to grabbing
+            setGrabHandPose();     //change pose of hand to grabbing
             _grabbedObject = _hits[closestHit].transform.gameObject;                          //set grabbedObject to closest grabbable object
             _grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
             _grabbedObject.transform.position = transform.position;                          //rotate and move grabbedObject with the hand            

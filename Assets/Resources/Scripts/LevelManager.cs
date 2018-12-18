@@ -21,24 +21,24 @@ namespace Assets.Resources.Scripts
             SetupScene(LevelStart);
         }
 
-        //SetupScene initializes our level         
+        // SetupScene initializes our level         
         public void SetupScene(int levelnum)
         {
             Level currLevel = Levels[levelnum].GetComponent<Level>();
             currLevel.enabled = true;
-            //player placement
+            // player placement
             SetPlayerPosition(levelnum);
             _goals[levelnum] = currLevel.Goal;
         }
  
-        //new player position when level changed
+        // new player position when level changed
         public void SetPlayerPosition(int levelnum)
         {
             Player.transform.position = Levels[levelnum].transform.position;
             Player.transform.rotation = Levels[levelnum].transform.rotation;
         }
 
-        //disable previous level and enable the next one
+        // disable previous level and enable the next one
         public void NextLevel()
         {
             _times[_currentLevel] = Levels[_currentLevel].GetComponent<Level>().GetTime();
