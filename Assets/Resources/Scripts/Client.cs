@@ -50,7 +50,7 @@ public class Client : MonoBehaviour
                 {
                    // Debug.Log("NOT EQUAL");
                    SaveToData(line);
-                }               
+                }              
             }
         }
 

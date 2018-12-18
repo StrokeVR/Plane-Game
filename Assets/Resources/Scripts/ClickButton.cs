@@ -114,6 +114,7 @@ namespace Assets.Resources.Scripts
             Cam.cullingMask = 0;
             // stop playing
             UnityEditor.EditorApplication.isPlaying = false;
+
             Application.Quit();
         }
 
@@ -124,7 +125,8 @@ namespace Assets.Resources.Scripts
             Cam.clearFlags = clear;
 
             Cam.cullingMask = 0;
-            SceneManager.LoadScene("PlaneGame");
+            
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         public void StartGame()
